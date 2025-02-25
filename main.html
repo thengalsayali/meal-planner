@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Planner</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Generate Your Custom Meal Plan!</h1>
+        <label for="diet">Diet Type</label>
+        <select id="diet">
+            <option value="Normal">Normal</option>
+            <option value="Vegetarian">Vegetarian</option>
+            <option value="Vegan">Vegan</option>
+        </select>
+        <label for="calories">Calories</label>
+        <input type="number" id="calories" placeholder="Enter calories">
+        <label for="protein">Protein (g)</label>
+        <input type="number" id="protein" placeholder="Enter protein in grams">
+        <label for="fat">Fat (g)</label>
+        <input type="number" id="fat" placeholder="Enter fat in grams">
+        <label for="carbs">Carbohydrates (g)</label>
+        <input type="number" id="carbs" placeholder="Enter carbohydrates in grams">
+        <button id="generateButton">Generate Meal Plan</button>
+        <div id="mealPlan" class="meal-plan"></div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('generateButton').addEventListener('click', function() {
+            const diet = document.getElementById('diet').value;
+            const calories = document.getElementById('calories').value;
+            const protein = document.getElementById('protein').value;
+            const fat = document.getElementById('fat').value;
+            const carbs = document.getElementById('carbs').value;
+
+            // Validate input
+            if (!calories || !protein || !fat || !carbs) {
+                document.getElementById('mealPlan').innerHTML = "Please fill in all fields.";
+                return;
+            }
+
+            // Redirect to meal page with query parameters
+            const queryParams = `diet=${diet}&calories=${calories}&protein=${protein}&fat=${fat}&carbs=${carbs}`;
+            window.location.href = `meal.html?${queryParams}`;
+        });
+    </script>
+</body>
+</html>
